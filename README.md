@@ -1,2 +1,6 @@
 # Lets-practice-problem-solving
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+Collection of algorithm questions I solve daily, to improve my problem solving skills.
+</br>
+Questions are from leetcode.
+
+Created using [LeetHub](https://github.com/QasimWani/LeetHub)
