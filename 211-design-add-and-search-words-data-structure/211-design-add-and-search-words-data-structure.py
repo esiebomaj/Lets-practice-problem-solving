@@ -4,6 +4,8 @@ class Node():
         self.end = False
         self.children = {}
 
+# we use a Trie(prefix tree) data structure to hold the words.
+# more on tries here https://en.wikipedia.org/wiki/Trie
 class WordDictionary:
 
     def __init__(self):
@@ -26,8 +28,11 @@ class WordDictionary:
             
             for i in range(len(word)):
                 char = word[i]
+                
                 if char == ".":
-                    # for loop and call this method for all of them
+                    # this matches anything so we have to check every posible sufix down the tree
+                    # to find a match
+                    #loop through all children and call dfs for all of them
                     for child in curr.children.values():
                         if dfs(child, word[i+1:]):
                             return True
