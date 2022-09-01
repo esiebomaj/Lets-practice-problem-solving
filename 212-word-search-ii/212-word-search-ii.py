@@ -45,11 +45,9 @@ class Solution:
             return False
         
         path = path + board[r][c]
-        # print(path)
         
         if node.children[board[r][c]].end >= 1:
             self.res.append(path)
-            # node.children[board[r][c]].end -= 1
             self.root.removeWord(path)
             
         
@@ -62,6 +60,7 @@ class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         self.root = Trie()
         self.maxLen = float(-inf)
+        
         for word in words:
             self.maxLen = max(self.maxLen, len(word))
             self.root.addWord(word)
