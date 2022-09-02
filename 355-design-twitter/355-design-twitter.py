@@ -23,14 +23,12 @@ class NewsFeed():
         self.feeds.insert(0, (date, user, tweetId))
         
     def getFeeds(self,):
-        print("Feeds",self.feeds)
         return [i[2] for i in self.feeds[:10]]
     
     def removeTweetsByUser(self, userId):
         self.feeds = [i for i in self.feeds if i[1] != userId]
         
     def merge(self, tweets):
-        print(f"merging {self.feeds} and {tweets}")
         i,j = 0,0
         merged = []
         seen = set()
@@ -59,7 +57,6 @@ class NewsFeed():
                 seen.add(self.feeds[i][0])
             i+=1
             
-        print(f"result: {merged}")
         self.feeds = merged
         
 
