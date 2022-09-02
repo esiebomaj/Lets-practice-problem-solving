@@ -3,7 +3,7 @@ from collections import defaultdict
             
 
 # an attempt to solve this question and reduce complexity for  getFeeds by caching newsfeed
-# i.e when a user makes a post, we add to all his folowers newsfeed 
+# i.e when a user makes a tweet, we add the tweet to all his folowers newsfeed 
 # the problems with this solution are
 # 1. how do we update a users feeds with the previous post of a person he just followed?
 # 2. how do we update a users feeds when after he unfolowed another user 
@@ -13,6 +13,11 @@ from collections import defaultdict
 # problem 1: we can merge the newly followed users posts with the current user feeds
 #            We know that both feeds and followed users posts are sorted so our task here is to merge 2 sorted arrays
 # problem 2: filter out all tweets made by unfollowed user from user feeds
+
+# once we can solve all these problems we have a feed system that is supperfast (constant time)
+# the justification for these is that we know we will get more feed requests that any other type of request
+# and to give a great user experience these endpoint needs to be as fast as posible
+
 
 
 class NewsFeed():
@@ -31,6 +36,7 @@ class NewsFeed():
     def merge(self, tweets):
         i,j = 0,0
         merged = []
+        # we use these set to avoid duplicates
         seen = set()
         while i < len(self.feeds) and j < len(tweets):
             if self.feeds[i][0] >= tweets[j][0]:
@@ -61,11 +67,7 @@ class NewsFeed():
         
 
 def newUser():
-    return  {
-                "tweets":[],
-                "newsFeed":NewsFeed(),
-                "followers":set()
-            }
+    return  {"tweets":[], "newsFeed":NewsFeed(), "followers":set()}
 
     
 class Twitter:
