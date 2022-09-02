@@ -35,6 +35,12 @@ class Solution:
             points[i] = (d, point)
             
         heapq.heapify(points) #O(n)
+        # Notes: heapq uses the first item in a turple to compare
+        # if the first item is equal it moves on to break the tie using the second item in the turple
+        # hence this is not stable as you are not assured that the order of tied items will be the same as their order in the input
+        # to make heapsort stable we can have a tuple of 3 items, the first is the main comparisom object, 
+        # the second item be the order they appear in the input (incase of a tie - it will compare using this value - making it stable) 
+        # and the third item can be any other thing
         
         res = []
         
