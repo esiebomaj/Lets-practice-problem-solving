@@ -15,8 +15,10 @@ from collections import defaultdict
 # problem 2: filter out all tweets made by unfollowed user from user feeds
 
 # once we can solve all these problems we have a feed system that is supperfast (constant time)
-# the justification for these is that we know we will get more feed requests that any other type of request
-# and to give a great user experience these endpoint needs to be as fast as posible
+# the justification for these is that we know we will get more feed requests than any other type of request
+# computing the feeds everytime a user requests is going to be resource expensive
+# also users dont want to wait that long everytime they want to see their feeds
+# to give a great user experience the getFeeds endpoint needs to be as fast as posible
 
 
 
@@ -121,11 +123,12 @@ class Twitter:
     def postTweet(self, userId: int, tweetId: int) -> None:
             
         self.db[userId]["tweets"].append((self.date, tweetId))
-        self.date += 1
+        self.date -= 1
         
     def getNewsFeed(self, userId: int) -> List[int]:
-        feeds = [None]*10
+        # max heap
         heap = []
+        feeds = []
         
         self.db[userId]["following"].add(userId)
         
@@ -133,16 +136,11 @@ class Twitter:
             for tweet in self.db[user]["tweets"]:
                 heapq.heappush(heap, tweet)
 
-        while len(heap) > 10:
-            heapq.heappop(heap)
-        
-        for i in range(10-1, -1, -1):
+        for i in range(10):
             if heap:
-                feeds[i] = heapq.heappop(heap)[1] 
-            else:
-                break
+                feeds.append(heapq.heappop(heap)[1]) 
         
-        return [i for i in feeds if i]
+        return feeds
         
 
     def follow(self, followerId: int, followeeId: int) -> None:
