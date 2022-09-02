@@ -20,90 +20,90 @@ from collections import defaultdict
 
 
 
-class NewsFeed():
-    def __init__(self):
-        self.feeds = []
+# class NewsFeed():
+#     def __init__(self):
+#         self.feeds = []
         
-    def add(self, tweetId, user, date):
-        self.feeds.insert(0, (date, user, tweetId))
+#     def add(self, tweetId, user, date):
+#         self.feeds.insert(0, (date, user, tweetId))
         
-    def getFeeds(self,):
-        return [i[2] for i in self.feeds[:10]]
+#     def getFeeds(self,):
+#         return [i[2] for i in self.feeds[:10]]
     
-    def removeTweetsByUser(self, userId):
-        self.feeds = [i for i in self.feeds if i[1] != userId]
+#     def removeTweetsByUser(self, userId):
+#         self.feeds = [i for i in self.feeds if i[1] != userId]
         
-    def merge(self, tweets):
-        i,j = 0,0
-        merged = []
-        # we use these set to avoid duplicates
-        seen = set()
-        while i < len(self.feeds) and j < len(tweets):
-            if self.feeds[i][0] >= tweets[j][0]:
-                if self.feeds[i][0] not in seen:
-                    merged.append(self.feeds[i])
-                    seen.add(self.feeds[i][0])
-                i+=1
-            else:
-                if tweets[j][0] not in seen:
-                    merged.append(tweets[j])
-                    seen.add(tweets[j][0])
-                j += 1
+#     def merge(self, tweets):
+#         i,j = 0,0
+#         merged = []
+#         # we use these set to avoid duplicates
+#         seen = set()
+#         while i < len(self.feeds) and j < len(tweets):
+#             if self.feeds[i][0] >= tweets[j][0]:
+#                 if self.feeds[i][0] not in seen:
+#                     merged.append(self.feeds[i])
+#                     seen.add(self.feeds[i][0])
+#                 i+=1
+#             else:
+#                 if tweets[j][0] not in seen:
+#                     merged.append(tweets[j])
+#                     seen.add(tweets[j][0])
+#                 j += 1
             
                 
-        while  j < len(tweets):
-            if tweets[j][0] not in seen:
-                merged.append(tweets[j])
-                seen.add(tweets[j][0])
-            j += 1
+#         while  j < len(tweets):
+#             if tweets[j][0] not in seen:
+#                 merged.append(tweets[j])
+#                 seen.add(tweets[j][0])
+#             j += 1
             
-        while i < len(self.feeds):
-            if self.feeds[i][0] not in seen:
-                merged.append(self.feeds[i])
-                seen.add(self.feeds[i][0])
-            i+=1
+#         while i < len(self.feeds):
+#             if self.feeds[i][0] not in seen:
+#                 merged.append(self.feeds[i])
+#                 seen.add(self.feeds[i][0])
+#             i+=1
             
-        self.feeds = merged
+#         self.feeds = merged
         
 
-def newUser():
-    return  {"tweets":[], "newsFeed":NewsFeed(), "followers":set()}
+# def newUser():
+#     return  {"tweets":[], "newsFeed":NewsFeed(), "followers":set()}
 
     
-class Twitter:
+# class Twitter:
 
-    def __init__(self):
-        self.db = defaultdict(newUser)
-        self.date = 0
+#     def __init__(self):
+#         self.db = defaultdict(newUser)
+#         self.date = 0
         
         
-    def postTweet(self, userId: int, tweetId: int) -> None:   
-        print("post tweet")
-        self.db[userId]["tweets"].append((self.date, userId, tweetId))
-        self.db[userId]["newsFeed"].add(tweetId, userId, self.date)
+#     def postTweet(self, userId: int, tweetId: int) -> None:   
+#         print("post tweet")
+#         self.db[userId]["tweets"].append((self.date, userId, tweetId))
+#         self.db[userId]["newsFeed"].add(tweetId, userId, self.date)
         
-        for follower in self.db[userId]["followers"]:
-            self.db[follower]["newsFeed"].add(tweetId, userId, self.date)  
+#         for follower in self.db[userId]["followers"]:
+#             self.db[follower]["newsFeed"].add(tweetId, userId, self.date)  
             
-        self.date+=1
+#         self.date+=1
             
         
-    def getNewsFeed(self, userId: int) -> List[int]:
-        print("get feeds")
-        return self.db[userId]["newsFeed"].getFeeds()
+#     def getNewsFeed(self, userId: int) -> List[int]:
+#         print("get feeds")
+#         return self.db[userId]["newsFeed"].getFeeds()
         
 
-    def follow(self, followerId: int, followeeId: int) -> None:
-        print("follow")
-        self.db[followeeId]["followers"].add(followerId)
-        followeeTweets = list(reversed(self.db[followeeId]["tweets"]))
-        self.db[followerId]["newsFeed"].merge(followeeTweets)
+#     def follow(self, followerId: int, followeeId: int) -> None:
+#         print("follow")
+#         self.db[followeeId]["followers"].add(followerId)
+#         followeeTweets = list(reversed(self.db[followeeId]["tweets"]))
+#         self.db[followerId]["newsFeed"].merge(followeeTweets)
         
 
-    def unfollow(self, followerId: int, followeeId: int) -> None:
-        print("unfollow")
-        self.db[followeeId]["followers"].discard(followerId)
-        self.db[followerId]["newsFeed"].removeTweetsByUser(followeeId)
+#     def unfollow(self, followerId: int, followeeId: int) -> None:
+#         print("unfollow")
+#         self.db[followeeId]["followers"].discard(followerId)
+#         self.db[followerId]["newsFeed"].removeTweetsByUser(followeeId)
         
 
         
