@@ -112,44 +112,44 @@ class Twitter:
         
         
 
-# class Twitter:
+class Twitter:
 
-#     def __init__(self):
-#         self.db = defaultdict(lambda:{"tweets": [], "following": set()})
-#         self.date = 0
+    def __init__(self):
+        self.db = defaultdict(lambda:{"tweets": [], "following": set()})
+        self.date = 0
         
-#     def postTweet(self, userId: int, tweetId: int) -> None:
+    def postTweet(self, userId: int, tweetId: int) -> None:
             
-#         self.db[userId]["tweets"].append((self.date, tweetId))
-#         self.date += 1
+        self.db[userId]["tweets"].append((self.date, tweetId))
+        self.date += 1
         
-#     def getNewsFeed(self, userId: int) -> List[int]:
-#         feeds = [None]*10
-#         heap = []
+    def getNewsFeed(self, userId: int) -> List[int]:
+        feeds = [None]*10
+        heap = []
         
-#         self.db[userId]["following"].add(userId)
+        self.db[userId]["following"].add(userId)
         
-#         for user in self.db[userId]["following"]:
-#             for tweet in self.db[user]["tweets"]:
-#                 heapq.heappush(heap, tweet)
+        for user in self.db[userId]["following"]:
+            for tweet in self.db[user]["tweets"]:
+                heapq.heappush(heap, tweet)
 
-#         while len(heap) > 10:
-#             heapq.heappop(heap)
+        while len(heap) > 10:
+            heapq.heappop(heap)
         
-#         for i in range(10-1, -1, -1):
-#             if heap:
-#                 feeds[i] = heapq.heappop(heap)[1] 
-#             else:
-#                 break
+        for i in range(10-1, -1, -1):
+            if heap:
+                feeds[i] = heapq.heappop(heap)[1] 
+            else:
+                break
         
-#         return [i for i in feeds if i]
+        return [i for i in feeds if i]
         
 
-#     def follow(self, followerId: int, followeeId: int) -> None:
-#         self.db[followerId]["following"].add(followeeId)    
+    def follow(self, followerId: int, followeeId: int) -> None:
+        self.db[followerId]["following"].add(followeeId)    
 
-#     def unfollow(self, followerId: int, followeeId: int) -> None:
-#         self.db[followerId]["following"].discard(followeeId)
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        self.db[followerId]["following"].discard(followeeId)
 
         
 # # Your Twitter object will be instantiated and called as such:
