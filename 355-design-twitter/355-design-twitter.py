@@ -113,6 +113,11 @@ from collections import defaultdict
 
         
         
+# these is a much more easier to understand solution
+# we compute the user feeds on demand
+# this is less perfomant beuase the getFeeds has a complexity of Time: O(m*n*log(m*n)) where
+# m=number of following
+# n=avg number of post per per following user
 
 class Twitter:
 
@@ -120,12 +125,16 @@ class Twitter:
         self.db = defaultdict(lambda:{"tweets": [], "following": set()})
         self.date = 0
         
-    def postTweet(self, userId: int, tweetId: int) -> None:
+    def postTweet(self, userId: int, tweetId: int) -> None: # Time: O(1)
             
         self.db[userId]["tweets"].append((self.date, tweetId))
         self.date -= 1
         
-    def getNewsFeed(self, userId: int) -> List[int]:
+    def getNewsFeed(self, userId: int) -> List[int]: 
+        #Time: O(m*n*log(m*n))  
+        # m=number of following
+        # n=number of post per per following user
+        
         # max heap
         heap = []
         feeds = []
@@ -143,10 +152,10 @@ class Twitter:
         return feeds
         
 
-    def follow(self, followerId: int, followeeId: int) -> None:
+    def follow(self, followerId: int, followeeId: int) -> None: #Time: O(1)
         self.db[followerId]["following"].add(followeeId)    
 
-    def unfollow(self, followerId: int, followeeId: int) -> None:
+    def unfollow(self, followerId: int, followeeId: int) -> None: #Time: O(1)
         self.db[followerId]["following"].discard(followeeId)
 
         
