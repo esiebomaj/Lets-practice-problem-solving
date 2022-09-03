@@ -11,6 +11,7 @@ class Solution:
             pivot = nums[r]
             
             p = l
+            
             for i in range(l,r):
                 if nums[i]<=pivot:
                     # swap i with p
@@ -18,7 +19,7 @@ class Solution:
                     p+=1
                     
             nums[p], nums[r] = nums[r], nums[p]
-            # print("pivot", pivot, kIdx, p, nums)
+            
             if kIdx == p: return nums[p]
             elif kIdx > p: return quickSelect(p+1, r)
             else: return quickSelect(l, p-1)
