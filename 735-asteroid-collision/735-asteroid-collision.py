@@ -1,6 +1,7 @@
 class Solution:
     def sameDirection(self, i,j):
         return (i < 0 and j < 0) or (i> 0 and j >0)
+    
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         # strategy 1: use 2 stacks
         stack1 = asteroids
@@ -20,7 +21,6 @@ class Solution:
                     stack1.append(y)
                 else:
                     pass
-                
                 
                 
         return reversed(stack2)
