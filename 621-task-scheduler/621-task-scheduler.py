@@ -5,12 +5,11 @@ class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         counter = Counter(tasks)
         heap = [[-counter[i], i] for i in counter]
-        # print(heap)
         heapq.heapify(heap)
-        # print(heap)
-        res = ""
+        
+        res = 0
+        
         while heap:
-            print(heap)
             k = n
             stack = []
             while k >= 0:
@@ -20,22 +19,19 @@ class Solution:
                     if curr[0] < 0:
                         stack.append(curr)
                         
-                    res += curr[1]
+                    res += 1
                     
                 elif (not heap) and (len(stack)>0):
-                    res += " "
+                    res += 1
                     
                 k -= 1
                     
             while stack:
                 curr = stack.pop()
-                # curr[0] += 1
-                # if curr[0] < 0:
                 heapq.heappush(heap, curr)
                     
-        print(res)
-        print(len(res))
-        return len(res)
+        # print(res)
+        return res
                     
             
         
