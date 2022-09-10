@@ -7,14 +7,13 @@ class Solution:
             dp[c][0] = 1
         
         # r and c stand for row and column
-        
         for r in range(1, len(coins)+1):
             for c in range(1, amount+1):
                 if c < coins[r-1]:
                     dp[r][c] = dp[r-1][c]
                 else:
                     dp[r][c] = dp[r-1][c] + dp[r][c-coins[r-1]]
-        # print(dp)
+
         return dp[-1][-1]
                     
         # 2 options
