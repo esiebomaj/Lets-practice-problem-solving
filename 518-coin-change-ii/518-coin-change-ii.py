@@ -1,6 +1,9 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         
+##### More intuitive solution using m by n time and space
+##### Understand this soution forst before moving to the second one
+        
 #         dp = [[0]*(amount+1) for coin in range(len(coins)+1)]
         
 #         for c in range(len(coins)+1):
@@ -17,11 +20,15 @@ class Solution:
 #         return dp[-1][-1]
 
 
+
+##### Optimized soltion using M*N time but M space
+
         dp = [0]*(amount+1)
         
         dp[0] = 1
         
         # r and c stand for row and column
+        
         for r in range(1, len(coins)+1):
             for c in range(1, amount+1):
                 if c < coins[r-1]:
@@ -32,12 +39,4 @@ class Solution:
         return dp[-1]
                     
         # 2 options
-        # => we use the curr coin +
-        # => we dont use the curr coin        
-        
-#           0,1,2,3,4,5
-        
-#       .   0 0 0 0 0 0
-#       1   1 1 1 1 1 1
-#       2   1 1 2 2 3 3
-#       5   1 1 2 2 2 4
+        # => we use the curr coin +  we dont use the curr coin        
