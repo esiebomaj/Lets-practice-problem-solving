@@ -51,8 +51,7 @@ class Solution:
         return dfs(0, 0)
     
     def canPartition(self, nums: List[int]) -> bool:
-        # same idea as the first solution 
-        # but this time using memoization in our dfs to reduce repeated computations
+        # In this solution we use DP
         
         if sum(nums)%2 != 0:
             return False
@@ -77,30 +76,30 @@ class Solution:
                 else:
                     dp[r][c] = dp[r-1][c] or dp[r-1][c-nums[r]]
                     
-        # print(dp)
         return dp[-1][-1]
         
+        # DP EXPLANATION
+        # first col is always T (cause we call always make 0 using the nums)
+        # the first row is true only when the num equals the target
         
-    #     [1,2,3,4] 5
-    
-    #     0,1,2,3,4,5
-    # 2   T F T F F F    (amount%coins[0])
-    # 3   T F T T F T
-    # 1   T T T T T T
-    # 4   T T T T T T
+        # if the target is less than the current num we take the up one
         
-        
-       
-        
-        # first col is always F (cause we cannot make 0 using atleast 1 of n positve ints)  
-        
-        # if the amount is less than the current coin we take the up one
-        
-        # if the amount  is reater or equal to the current coin:
+        # if the target  is greater or equal to the current num:
         
         # if the one above it is true then the one under is true too
-        # can we make the target with the coins before this coin? if yes the we can make it with this coin too
-        # SUMMMARY: dp[r][c] = dp[r-1][c] or dp[r-1][c-nums[r]]
+        # can we make the target - current num with the nums before this num? 
+        # if yes then we can make te target with this num included
+        
+        # SUMMMARY: 
+        # if curr target < curr num:
+        # dp[r-1][c]
+        # else:
+        # dp[r][c] = dp[r-1][c] or dp[r-1][c-nums[r]]
+        
+        
+    
+        
+       
         
         
         
