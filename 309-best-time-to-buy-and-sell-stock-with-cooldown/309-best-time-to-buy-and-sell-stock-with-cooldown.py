@@ -6,7 +6,6 @@ class Solution:
         def dfs(i, cooling, bought, j):
             
             if (i, cooling, bought, j) in memo:
-                # print("returning from memo", (i, cooling, bought, j))
                 return memo[(i, cooling, bought, j)]
             
             if i == len(prices):
