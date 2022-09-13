@@ -3,58 +3,29 @@ class Solution:
         
         memo = {}
         
-        def dfs(i, cooling, bought, j):
+        # dfs + memoization
+        # honestly this is the best solution that came out from my brain 
+        # it works but quite slow and consumes space
+        
+        def dfs(i, bought, j):
             
-            if (i, cooling, bought, j) in memo:
-                return memo[(i, cooling, bought, j)]
+            if (i, bought, j) in memo:
+                return memo[(i, bought, j)]
             
-            if i == len(prices):
+            if i >= len(prices):
                 return 0 
             
-            if cooling:
-                # we wait
-                rt = dfs(i+1, False, bought, j)
             
-            elif bought != False:
+            if bought:
                 # we sell or # we dont sell
-                rt = max(dfs(i+1, True, False, 0)+(prices[i]-j), dfs(i+1, False, bought, j))
+                rt = max(dfs(i+2,  False, 0)+(prices[i]-j), dfs(i+1, bought, j))
             
             else:
                 # we buy or # we dont buy
-                rt = max(dfs(i+1, False, True, prices[i]), dfs(i+1, False, bought, j))
+                rt = max(dfs(i+1, True, prices[i]), dfs(i+1, bought, j))
             
-            memo[(i, cooling, bought, j)] = rt
+            memo[(i, bought, j)] = rt
             return rt
         
         
-        return dfs(0,False,False,0)
-    
-    
-# class Solution:
-#     def maxProfit(self, prices: List[int]) -> int:
-#         # State: Buying or Selling?
-#         # If Buy -> i + 1
-#         # If Sell -> i + 2
-
-#         dp = {}  # key=(i, buying) val=max_profit
-
-#         def dfs(i, buying):
-#             if i >= len(prices):
-#                 return 0
-#             if (i, buying) in dp:
-#                 return dp[(i, buying)]
-
-#             cooldown = dfs(i + 1, buying)
-#             if buying:
-#                 buy = dfs(i + 1, not buying) - prices[i]
-#                 dp[(i, buying)] = max(buy, cooldown)
-#             else:
-#                 sell = dfs(i + 2, not buying) + prices[i]
-#                 dp[(i, buying)] = max(sell, cooldown)
-#             return dp[(i, buying)]
-
-#         return dfs(0, True)
-        
-        
-        
-        
+        return dfs(0,False,0)
