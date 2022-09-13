@@ -7,27 +7,28 @@ class Solution:
         # honestly this is the best solution that came out from my brain 
         # it works but quite slow and consumes space
         
-        def dfs(i, bought, j):
+        def dfs(i, bought):
             
-            if (i, bought, j) in memo:
-                return memo[(i, bought, j)]
+            if (i, bought) in memo:
+                return memo[(i, bought)]
             
             if i >= len(prices):
                 return 0 
             
-            cool = dfs(i+1, bought, j)
+            cool = dfs(i+1, bought)
+            
             if bought:
                 # we sell or # we dont sell
-                sell = dfs(i+2,  False, 0) + prices[i]
+                sell = dfs(i+2,  False) + prices[i]
                 rt = max(sell, cool)
             
             else:
                 # we buy or # we dont buy
-                buy = dfs(i+1, True, prices[i]) - prices[i]
+                buy = dfs(i+1, True) - prices[i]
                 rt = max(buy, cool)
             
-            memo[(i, bought, j)] = rt
+            memo[(i, bought)] = rt
             return rt
         
         
-        return dfs(0,False,0)
+        return dfs(0,False)
