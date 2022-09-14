@@ -16,10 +16,3 @@ class Solution:
                 return isMatch and dfs(i+1, j+1)
             
         return dfs(0,0)
-    
-        
-        # s = "ab" 
-        i = 2
-        
-        p = ".*c"
-        j = 0
