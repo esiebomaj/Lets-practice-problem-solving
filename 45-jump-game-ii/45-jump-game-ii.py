@@ -19,5 +19,3 @@ class Solution:
             return jumps
                 
         return dfs(0)
-                
-[2,3,1,1,4]
