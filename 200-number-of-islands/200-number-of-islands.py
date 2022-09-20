@@ -3,6 +3,7 @@ class Solution:
         seen = set()
         rows = len(grid)
         cols = len(grid[0])
+        
         self.islandCount = 0
         
         def bfs(r,c):
