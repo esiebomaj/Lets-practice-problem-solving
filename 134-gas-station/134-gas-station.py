@@ -1,22 +1,39 @@
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        cum = []
-        for i in range(len(gas)):
-            cum.append(gas[i]-cost[i])
-            
-        if sum(cum) < 0:
-            return -1
-        
         maxSum = float(-inf)
         maxSumId = None
         currSum = 0
-        
         for i in range(len(gas)-1, -1, -1):
-            currSum = currSum + cum[i]
+            currSum += gas[i]
+            currSum -= cost[i]
+            
             if currSum > maxSum:
                 maxSum = currSum
                 maxSumId = i
-        return maxSumId
+
+        if currSum >= 0:
+            return maxSumId
+        else:
+            return -1
+            
+            
+#         cum = []
+#         for i in range(len(gas)):
+#             cum.append(gas[i]-cost[i])
+            
+#         if sum(cum) < 0:
+#             return -1
+        
+#         maxSum = float(-inf)
+#         maxSumId = None
+#         currSum = 0
+        
+#         for i in range(len(gas)-1, -1, -1):
+#             currSum = currSum + cum[i]
+#             if currSum > maxSum:
+#                 maxSum = currSum
+#                 maxSumId = i
+#         return maxSumId
         
             
 #         for i in range(len(gas)):
