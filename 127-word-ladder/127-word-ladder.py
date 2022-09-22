@@ -8,7 +8,10 @@ class Solution:
                 diffCount += 1
         return diffCount < 2
             
+        
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        
+        # Optimal solution - using wildcards
         if endWord == beginWord:
             return 0
         
@@ -22,8 +25,7 @@ class Solution:
                 sh = word[:i] + "*" + word[i+1:]
                 buckets[sh].append(word)
                 
-        # print(buckets)
-        
+                
         q = [[beginWord]]
         seen = set()
         pathLenght = 1
@@ -35,7 +37,6 @@ class Solution:
             neibors = []
             
             for word in curr:
-                # print(curr)
                 for i in range(len(word)):
                     sh = word[:i] + "*" + word[i+1:]
                     neibors.extend(buckets[sh])
@@ -55,7 +56,11 @@ class Solution:
             
             
                     
-        
+        # Brute force method using just loops and stack
+        #
+        # Time complexity:  n*n*n*m - O((n^3)*m) 
+        # where n if lenght of wordList and m is len a word
+        # Space Complexity: O(3n) where n is the len of wordlist
                 
 #         if endWord == beginWord:
 #             return 0
