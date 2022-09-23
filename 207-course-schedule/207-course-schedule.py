@@ -3,6 +3,10 @@ from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # Using topological sort
+        # this question is basically a cyle deection problem 
+        # we know that for a cyclic graph, it is not posible to find a complete topological sort
+        
+        # we can leverae this to detect the cycle
         
         res = []
         
