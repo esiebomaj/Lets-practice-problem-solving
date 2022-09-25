@@ -1,24 +1,32 @@
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:
-        count = {}
-        res = []
-        i, length = 0, len(S)
-        for j in range(length):
-            c = S[j]
-            count[c] = j
-
-        curLen = 0
+        lastHash = {}
+        for i in range(len(S)):
+            lastHash[S[i]] = i
+            
+        seen = set()
         goal = 0
-        while i < length:
+        res = []
+        start = 0
+        
+        for i in range(len(S)):
             c = S[i]
-            goal = max(goal, count[c])
-            curLen += 1
-
-            if goal == i:
-                res.append(curLen)
-                curLen = 0
-            i += 1
+            
+            if c not in seen:
+                goal += 1
+                
+            seen.add(c)
+            
+            if i == lastHash[c]:
+                goal -= 1
+            
+            if goal == 0:
+                res.append(i+1-start)
+                start = i+1
+                
+        # print(res)
         return res
+                
 
 # from collections import Counter
 
@@ -104,9 +112,6 @@ c:0
         k:1
         l:1
         }
-        
-
-        
         
         counter2 = {
         a:4
