@@ -3,7 +3,7 @@ import heapq
 
 class Solution:
     def decrement(self, key, dic):
-        # special methodto decrement value in a dictionary
+        # special method to decrement value in a dictionary
         # if the value reaches 0, we remvoe it fron the dictionary
         dic[key] -= 1
         if dic[key] == 0:
@@ -12,7 +12,6 @@ class Solution:
             
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
         counter = Counter(hand)
-        print(counter)
         
         heapq.heapify(hand)
         while hand:
