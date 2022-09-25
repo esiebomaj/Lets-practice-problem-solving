@@ -17,7 +17,7 @@ class Solution:
         heapq.heapify(hand)
         while hand:
             curr = heapq.heappop(hand)
-            print(curr)
+
             if curr not in counter:
                 continue
                 
@@ -29,7 +29,6 @@ class Solution:
             while j+1 in counter and count < groupSize:
                 
                 j += 1
-                print(j, count)
 
                 self.decrement(j, counter)
                 count += 1
