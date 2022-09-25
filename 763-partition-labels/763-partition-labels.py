@@ -1,46 +1,68 @@
-from collections import Counter
-
 class Solution:
-    def decrement(self, key, dic):
-        dic[key] -= 1
-        if dic[key] == 0:
-            del dic[key]
-        
-    def increment(self, key, dic):
-        if key in dic:
-            dic[key] += 1
-        else:
-            dic[key] = 1
-        
-    def partitionLabels(self, s: str) -> List[int]:
+    def partitionLabels(self, S: str) -> List[int]:
+        count = {}
         res = []
-        counter1 = Counter(s)
-        counter2 = {}
+        i, length = 0, len(S)
+        for j in range(length):
+            c = S[j]
+            count[c] = j
+
+        curLen = 0
+        goal = 0
+        while i < length:
+            c = S[i]
+            goal = max(goal, count[c])
+            curLen += 1
+
+            if goal == i:
+                res.append(curLen)
+                curLen = 0
+            i += 1
+        return res
+
+# from collections import Counter
+
+# class Solution:
+#     def decrement(self, key, dic):
+#         dic[key] -= 1
+#         if dic[key] == 0:
+#             del dic[key]
         
-        similar = 0
-        start = 0
+#     def increment(self, key, dic):
+#         if key in dic:
+#             dic[key] += 1
+#         else:
+#             dic[key] = 1
         
-        for i, char in enumerate(s):
-            # increment counter2
-            self.increment(char, counter2)
+#     def partitionLabels(self, s: str) -> List[int]:
+#         res = []
+#         counter1 = Counter(s)
+#         counter2 = {}
+        
+#         similar = 0
+#         start = 0
+        
+#         for i, char in enumerate(s):
+#             # increment counter2
+#             self.increment(char, counter2)
             
-            # decrement counter1
-            self.decrement(char, counter1)
+#             # decrement counter1
+#             self.decrement(char, counter1)
         
-            if counter2[char] == 1:
-            # we just added it to counter 2
-                similar += 1
+#             if counter2[char] == 1:
+#             # we just added it to counter 2
+#                 similar += 1
 
-            if char not in counter1:
-                # we just removed it from counter 1
-                similar -= 1
+#             if char not in counter1:
+#                 # we just removed it from counter 1
+#                 similar -= 1
 
-            if similar == 0:
-                res.append(s[start:i+1])
-                counter2 = {}
-                start = i+1
+#             if similar == 0:
+#                 res.append(s[start:i+1])
+#                 counter2 = {}
+#                 start = i+1
                 
-        return [len(i) for i in res]
+#         return [len(i) for i in res]
         
         
         """
