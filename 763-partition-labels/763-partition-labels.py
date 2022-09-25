@@ -21,7 +21,6 @@ class Solution:
         start = 0
         
         for i, char in enumerate(s):
-            print(i, char)
             # increment counter2
             self.increment(char, counter2)
             
@@ -41,7 +40,6 @@ class Solution:
                 counter2 = {}
                 start = i+1
                 
-        print(res)
         return [len(i) for i in res]
         
         
@@ -68,8 +66,8 @@ class Solution:
             
         
         EXAMPLE
-        "ababcbacadef egdehijhklij"
-        similar = 2
+        "ababcbaca defegdehijhklij"
+        similar = 0
         counter1 = {
 a:0
 b:0
@@ -85,12 +83,7 @@ c:0
         l:1
         }
         
-        {
-        d:1
-        e:1
-        f:1
-        }
-        
+
         
         
         counter2 = {
