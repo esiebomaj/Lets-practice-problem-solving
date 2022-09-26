@@ -1,10 +1,13 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
+        
         rows= len(grid)
         cols = len(grid[0])
+        
         q=[]
         seen = set()
         oranges = 0
+        
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 1 or grid[r][c] == 2:
@@ -13,9 +16,7 @@ class Solution:
                     q.insert(0, (r,c, 0))
                     seen.add((r, c))
                     
-                    
-        print(q)
-        
+                            
         mins = 0
         
         while q:
@@ -30,8 +31,3 @@ class Solution:
         if oranges == len(seen):
             return mins
         return -1
-    
-    # [[2,1,1]
-    #  [0,1,1]
-    #  [1,0,1]]
-                    
