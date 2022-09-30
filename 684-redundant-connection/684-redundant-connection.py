@@ -9,6 +9,7 @@ class Solution:
         def find(x):
             p = par[x]
             while p != par[p]:
+                par[p] = par[par[p]]
                 p = par[p]
                 
             return p
