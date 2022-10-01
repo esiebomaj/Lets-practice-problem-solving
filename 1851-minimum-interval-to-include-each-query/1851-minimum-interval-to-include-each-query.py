@@ -9,7 +9,6 @@ class Solution:
         res = {}
         heap = []        
         i = 0
-        # print(sizes)
         for q in sorted(queries):
             while i < len(sizes) and sizes[i][1] <= q:
                 if sizes[i][1] <= q <= sizes[i][2]:
