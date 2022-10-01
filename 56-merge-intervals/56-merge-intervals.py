@@ -8,7 +8,7 @@ class Solution:
             interval = intervals[i]
         
             
-            if not merged[1] < interval[0] and not merged[0] > interval[1]:
+            if not merged[1] < interval[0]:
                 # if overlap
                 # we merge and continue 
                 merged = [min(merged[0], interval[0]), max(merged[1], interval[1])]
