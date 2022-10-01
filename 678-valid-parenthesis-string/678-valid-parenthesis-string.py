@@ -17,13 +17,13 @@ class Solution:
                 return rt
             
             if s[i] == ")":
-                if count > 0: 
-                    rt = dfs(i+1, count-1)
-                    memo[(i,count)] = rt
-                    return rt
-                else:
-                    memo[(i,count)] = False
-                    return False
+                # if count > 0: 
+                rt = dfs(i+1, count-1)
+                memo[(i,count)] = rt
+                return rt
+                # else:
+                #     memo[(i,count)] = False
+                #     return False
             
             if s[i] == "*":
                 rt = dfs(i+1, count) or dfs(i+1, count+1) or dfs(i+1, count-1)
