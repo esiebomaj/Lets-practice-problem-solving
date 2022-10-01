@@ -2,6 +2,7 @@ class Solution:
     def checkValidString(self, s: str) -> bool:
         memo = {(len(s), 0): True}
         def dfs(i, count):
+            
             if i == len(s):
                 return count == 0
             if count < 0:
