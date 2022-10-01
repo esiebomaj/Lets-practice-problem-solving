@@ -1,18 +1,33 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        dp = [[0]*(amount+1) for i in range(len(coins)+1)]
-        for i in range(len(coins)+1):
-            dp[i][0] = 1
+        dp = [0]*(amount+1)
+        dp[0] = 1
         
         for r in range(1,len(coins)+1):
             for c in range(1,amount+1):
                 coin = coins[r-1]                        
                 if coin > c:
-                    dp[r][c] = dp[r-1][c]
+                    pass
                 else:
-                    dp[r][c] = dp[r-1][c] + dp[r][c-coin]
+                    dp[c] = dp[c] + dp[c-coin]
         
-        return dp[-1][-1]
+        return dp[-1]
+    
+#         dp = [[0]*(amount+1) for i in range(len(coins)+1)]
+#         for i in range(len(coins)+1):
+#             dp[i][0] = 1
+        
+#         for r in range(1,len(coins)+1):
+#             for c in range(1,amount+1):
+#                 coin = coins[r-1]                        
+#                 if coin > c:
+#                     dp[r][c] = dp[r-1][c]
+#                 else:
+#                     dp[r][c] = dp[r-1][c] + dp[r][c-coin]
+        
+#         return dp[-1][-1]
+    
+        
                 
                     
 """
