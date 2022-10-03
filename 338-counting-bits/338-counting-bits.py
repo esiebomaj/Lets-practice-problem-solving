@@ -1,7 +1,8 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        # O(N) solution 
+        
         """
+        # O(N) solution 
         We want to try to get a repeating pattern in the counts of 1
         
         Let use 10
@@ -67,6 +68,11 @@ class Solution:
         return dp
     
     
+        """
+        Time: O(nlogn)
+        More intuitive 
+        for each value in the range we can calculate its bin and manually cout the 1's
+        """
         result = []
         for i in range(0,n+1): # NlogN
             result.append(self.toBinary(i).count('1'))
