@@ -5,8 +5,8 @@
  */
 var getSum = function(a, b) {
     while (b !== 0){
-        const [carry, sum] = [((a&b) << 1), a ^ b]
-        a = sum
+        const carry = ((a&b) << 1)
+        a = a ^ b
         b = carry
     }
     return a
