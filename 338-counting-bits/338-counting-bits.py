@@ -18,11 +18,4 @@ class Solution:
             num = num//2
             
         return remainders
-            
-#         if num == 1:
-#             return '1'
-#         if num == 0:
-#             return ''
-        
-#         return self.toBinary(num//2) + f'{num%2}'
         
