@@ -1,32 +1,27 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        memo = {(len(s), 0): True}
+        memo = {}
         def dfs(i, count):
             
-            if i == len(s):
+            if (i,count) in memo:
+                return memo[(i, count)]
+            
+            if i >= len(s):
                 return count == 0
+            
             if count < 0:
                 return False
-            
-            if (i, count) in memo:
-                return memo[(i,count)]
-            
+                
             
             if s[i] == "(":
-                rt = dfs(i+1, count+1)
-                memo[(i,count)] = rt
-                return rt
-            
-            if s[i] == ")":
-                rt = dfs(i+1, count-1)
-                memo[(i,count)] = rt
-                return rt
-            
-            if s[i] == "*":
-                rt = dfs(i+1, count) or dfs(i+1, count+1) or dfs(i+1, count-1)
-                memo[(i,count)] = rt
-                return rt
+                memo[(i, count)] = dfs(i+1, count+1)
+                return memo[(i, count)]
                 
-            return rt
-        
-        return dfs(0, 0)
+            elif s[i] == ")":
+                memo[(i, count)] = dfs(i+1, count-1)
+                return memo[(i, count)]
+            elif s[i] =="*":
+                memo[(i, count)] = dfs(i+1, count+1) or dfs(i+1, count-1) or dfs(i+1, count)
+                return memo[(i, count)]
+            
+        return dfs(0,0)
