@@ -1,5 +1,26 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
+        # Greedy method
+        minCount, maxCount = 0, 0
+        for i in s:
+            if i == "(":
+                minCount, maxCount = minCount+1, maxCount+1
+            elif i == ")":
+                minCount, maxCount = minCount-1, maxCount-1
+            elif i == "*":
+                minCount, maxCount = minCount-1, maxCount+1
+                
+            if maxCount < 0:
+                return False
+            
+            if minCount < 0:
+                minCount = 0
+                
+        return minCount <= 0 <= maxCount
+    # ( * ) (
+        
+        
+        # recursion and memoization solution
         memo = {}
         def dfs(i, count):
             
