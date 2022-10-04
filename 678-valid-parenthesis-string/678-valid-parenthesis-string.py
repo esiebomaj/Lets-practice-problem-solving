@@ -17,7 +17,6 @@ class Solution:
                 minCount = 0
                 
         return minCount <= 0 <= maxCount
-    # ( * ) (
         
         
         # recursion and memoization solution
