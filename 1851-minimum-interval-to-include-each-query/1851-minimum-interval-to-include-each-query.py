@@ -20,7 +20,6 @@ class Solution:
             while heap and q > heap[0][2]:
                 heapq.heappop(heap)
                 
-            # print(heap)  
             res[q] = heap[0][0] if heap else -1
             
         return [res[i] for i in queries]
