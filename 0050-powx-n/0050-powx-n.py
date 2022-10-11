@@ -1,6 +1,10 @@
+
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        return x**n
+        """
+        Brute force solution
+        """
+        
         if x == 0:
             return 0
         if n == 0:
@@ -14,29 +18,32 @@ class Solution:
             res = res*x
         
         return 1/res if negPow else res
+    
 
-# class Solution:
-#     def myPow(self, x: float, n: int) -> float:
-#         return x**n
-#         if x == 0:
-#             return 0
-#         if n == 0:
-#             return 1
+    def myPow(self, x: float, n: int) -> float:
+        """
+        OPTIMIZED SOLUTION
+        """
+        return x**n
+        if x == 0:
+            return 0
+        if n == 0:
+            return 1
         
-#         res = x
-#         negPow = n < 0
+        res = x
+        negPow = n < 0
        
-#         n = abs(n)
+        n = abs(n)
         
-#         j = 1
+        j = 1
         
-#         while j*2 <= n:
-#             res = res * res
-#             j = j * 2
+        while j*2 <= n:
+            res = res * res
+            j = j * 2
             
         
-#         for i in range(j, n):
-#             res = res*x
+        for i in range(j, n):
+            res = res*x
         
-#         return 1/res if negPow else res
+        return 1/res if negPow else res
         
