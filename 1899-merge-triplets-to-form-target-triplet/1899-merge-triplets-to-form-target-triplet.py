@@ -2,6 +2,7 @@ class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
         cantUse = set()
         good = set()
+        
         for i,n in enumerate(target):
             for j,t in enumerate(triplets):
                 if t[i] > n:
