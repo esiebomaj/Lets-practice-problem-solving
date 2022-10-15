@@ -1,6 +1,7 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
         memo = {}
+        
         def dfs(i):
             
             if i in memo:
