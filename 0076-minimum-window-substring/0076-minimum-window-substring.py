@@ -17,9 +17,7 @@ class Solution:
         goodCount = len(tWindow)
         
         while r < len(s) or goodCount == 0:
-            # print(s[l:r], goodCount)
             if goodCount == 0:
-                # print(s[l:r])
                 if r-l < resLen:
                     res = s[l:r]
                     resLen = r-l
