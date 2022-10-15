@@ -10,7 +10,7 @@ class Solution:
         
         while q:
             id, lvl = q.pop()
-            seen.add(id)
+            # seen.add(id)
             for j in range(1, nums[id]+1):
                 i = id + j
                 if i not in seen:
