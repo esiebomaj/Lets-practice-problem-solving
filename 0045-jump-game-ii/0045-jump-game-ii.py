@@ -4,6 +4,7 @@ class Solution:
     def jump(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return 0
+        
         q = deque([(0,0)])
         seen = set()
         seen.add(0)
