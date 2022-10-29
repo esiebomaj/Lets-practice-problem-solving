@@ -16,7 +16,7 @@ class Solution:
             if len(res) == len(tickets)+1:
                 return True
             
-            if src not in adj:
+            if src not in adj or not adj[src]:
                 return False
             
             tmp = adj[src].copy()
