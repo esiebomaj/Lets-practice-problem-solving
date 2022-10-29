@@ -20,7 +20,7 @@ class Solution:
                 return False
             
             tmp = adj[src].copy()
-            for i,dest in enumerate(tmp):
+            for dest in tmp:
                 res.append(dest)
                 adj[src].popleft()
                 
