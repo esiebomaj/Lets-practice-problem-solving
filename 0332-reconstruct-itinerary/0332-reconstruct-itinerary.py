@@ -3,7 +3,7 @@ class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         tickets.sort()
         
-        adj = {s:[] for s,d in tickets}
+        adj = {s:deque() for s,d in tickets}
         
         for src, dest in tickets:
             adj[src].append(dest)
@@ -22,13 +22,13 @@ class Solution:
             tmp = adj[src].copy()
             for i,dest in enumerate(tmp):
                 res.append(dest)
-                adj[src].pop(i)
+                adj[src].popleft()
                 
                 if dfs(dest):
                     return True
                 
                 res.pop()
-                adj[src].insert(i,dest)
+                adj[src].append(dest)
             return False
                 
         dfs("JFK")
