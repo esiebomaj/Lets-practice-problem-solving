@@ -1,5 +1,11 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        # Space complexity is O(1)
+        # I could consider creating another matrix for my computation
+        # but that would make the space O(N*M)
+        
+        # Time complexity is O(N*M)
+        
         n = len(obstacleGrid)
         m = len(obstacleGrid[0])
         
