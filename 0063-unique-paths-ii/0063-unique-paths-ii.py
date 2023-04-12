@@ -24,7 +24,6 @@ class Solution:
             else:                
                 obstacleGrid[0][c] = 1
             
-        print(obstacleGrid)
         for r in range(1,n):
             for c in range(1,m):
                 if obstacleGrid[r][c] == 1:
