@@ -3,8 +3,6 @@ class Solution:
         n = len(obstacleGrid)
         m = len(obstacleGrid[0])
         
-        if m == 1 and n == 1:
-            return 1 if obstacleGrid[0][0] == 0 else 0
         first = obstacleGrid[0][0]
         obstacle = False
         for r in range(n):
